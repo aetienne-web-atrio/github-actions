@@ -5,6 +5,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
-      - run: npm install -g bats
-      - run: bats -v
+
+      - name: ssh deploy
+        uses: easingthemes/ssh-deploy@v2.2.11
+        env:
+          REMOTE_HOST: 51.210.9.60
+          REMOTE_USER: ubuntu
+          REMOTE_PORT: 2288
+          TARGET: /home/ubuntu/
