@@ -29,7 +29,9 @@ jobs:
         run: poetry install --no-interaction
 
       - name: Run tests
-        run: echo "tests"
+        run: |
+          echo "tests"
+          touch ${{ github.workspace }}/test
 
       - name: ssh deploy
         uses: easingthemes/ssh-deploy@v2.2.11
@@ -39,3 +41,4 @@ jobs:
           REMOTE_USER: ubuntu
           REMOTE_PORT: 2288
           TARGET: /home/ubuntu/actions
+          EXCLUDE: .git/
