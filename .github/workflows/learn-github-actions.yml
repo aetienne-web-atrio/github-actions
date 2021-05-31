@@ -42,3 +42,7 @@ jobs:
           REMOTE_PORT: 2288
           TARGET: /home/ubuntu/actions
           EXCLUDE: .git/
+
+      - name: ssh command
+        run: |
+          ssh ubuntu@51.210.9.60 -p 2288 "touch /home/ubuntu/touched"
