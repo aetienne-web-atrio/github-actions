@@ -45,4 +45,4 @@ jobs:
 
       - name: ssh command
         run: |
-          ssh ubuntu@51.210.9.60 -p 2288 "touch /home/ubuntu/touched"
+          ssh -i ~/.ssh/deploy_key ubuntu@51.210.9.60 -p 2288 "touch /home/ubuntu/touched"
