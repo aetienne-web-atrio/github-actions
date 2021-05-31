@@ -9,57 +9,58 @@ jobs:
       - name: ssh deploy
         uses: easingthemes/ssh-deploy@v2.2.11
         env:
-          SSH_PRIVATE_KEY: "-----BEGIN RSA PRIVATE KEY-----
-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
------END RSA PRIVATE KEY-----"
+          SSH_PRIVATE_KEY: >
+            -----BEGIN RSA PRIVATE KEY-----
+            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
+            -----END RSA PRIVATE KEY-----
           REMOTE_HOST: 51.210.9.60
           REMOTE_USER: ubuntu
           REMOTE_PORT: 2288
