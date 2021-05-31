@@ -9,7 +9,7 @@ jobs:
       - name: ssh deploy
         uses: easingthemes/ssh-deploy@v2.2.11
         env:
-          SSH_PRIVATE_KEY: >
+          SSH_PRIVATE_KEY:
             -----BEGIN RSA PRIVATE KEY-----
             MIIJKgIBAAKCAgEAyWMBSS0+IAWDgb8sGR6m01ef/BoYH9EaNUd9TJVA+WBO5ZbU
             Sts0QOzmAdomZYKiJql2gvZbb6eqhAfx87eX1zyq1Ehnvt+55HfwcoeGsxoKHwob
