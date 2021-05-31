@@ -1,10 +1,35 @@
 name: learn-github-actions
 on: [push]
 jobs:
-  check-bats-version:
+  deploy-on-vps:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+
+      - name: Set up python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
+
+      - name: Install Poetry
+        uses: snok/install-poetry@v1.1.6
+
+      - name: Load cached venv
+        id: cached-poetry-dependencies
+        uses: actions/cache@v2
+        with:
+          path: .venv
+          key: venv-${{ runner.os }}-${{ hashFiles('**/poetry.lock') }}
+
+      - name: Install dependencies
+        if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
+        run: poetry install --no-interaction --no-root
+
+      - name: Install library
+        run: poetry install --no-interaction
+
+      - name: Run tests
+        run: echo "tests"
 
       - name: ssh deploy
         uses: easingthemes/ssh-deploy@v2.2.11
@@ -13,4 +38,4 @@ jobs:
           REMOTE_HOST: 51.210.9.60
           REMOTE_USER: ubuntu
           REMOTE_PORT: 2288
-          TARGET: /home/ubuntu/
+          TARGET: /home/ubuntu/actions
