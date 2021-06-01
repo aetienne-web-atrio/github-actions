@@ -55,7 +55,7 @@ jobs:
           REMOTE_USER: ubuntu
           REMOTE_PORT: 2288
           TARGET: /home/ubuntu/actions
-          EXCLUDE: .git/
+          EXCLUDE: .git/ .venv/
 
 #      - name: ssh command
 #        run: |
