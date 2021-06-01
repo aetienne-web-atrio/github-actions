@@ -11,6 +11,24 @@ def print_hi(name):
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
+    a = {"qssqd": "qsdsqd", "dqsdq": "qsdqsd", "qsdqsddqs": "qsdqsdqsd"}
+
+    b = 6548
+    f = 47698789
+
+    
+    r = [
+        {
+
+        },
+        {
+
+
+
+        }
+    ]
+
+
     print_hi('PyCharm')
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
