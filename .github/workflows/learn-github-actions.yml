@@ -41,7 +41,7 @@ jobs:
 
       - name: Run tests
         run: |
-          source ${{ github.workspace }}/.venv/bin/activate
+          poetry shell
           pytest tests/
           coverage report
 
