@@ -39,15 +39,14 @@ jobs:
         uses: github/super-linter@v4
         env:
           VALIDATE_ALL_CODEBASE: false
-#          DEFAULT_BRANCH: master
+          DEFAULT_BRANCH: master
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Run tests
-        run: poetry run pytest tests/
-#          source .venv/bin/activate
-#          pytest tests/
-#          coverage report
-
+        run: |
+          source ${{ github.workspace }}/.venv/bin/activate
+          pytest tests/
+          coverage report
 
       - name: ssh deploy
         uses: easingthemes/ssh-deploy@v2.2.11
