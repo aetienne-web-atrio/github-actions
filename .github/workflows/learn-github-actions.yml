@@ -44,7 +44,8 @@ jobs:
 
       - name: Run tests
         run: |
-          ls -l -R /
+          ls -l -R ./
+          ls -l -R ${{ github.workspace }}
           source ${{ github.workspace }}/.venv/bin/activate
           pytest tests/
           coverage report
