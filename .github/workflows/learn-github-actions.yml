@@ -43,10 +43,11 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Run tests
-        run: |
-          source .venv/bin/activate
-          pytest tests/
-          coverage report
+        run: poetry run pytest tests/
+#          source .venv/bin/activate
+#          pytest tests/
+#          coverage report
+
 
       - name: ssh deploy
         uses: easingthemes/ssh-deploy@v2.2.11
