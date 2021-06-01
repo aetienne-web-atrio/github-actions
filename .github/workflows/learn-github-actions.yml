@@ -41,8 +41,9 @@ jobs:
 
       - name: Run tests
         run: |
-          echo "tests"
-          touch ${{ github.workspace }}/test
+          source .venv/bin/activate
+          pytest tests/
+          coverage report
 
       - name: ssh deploy
         uses: easingthemes/ssh-deploy@v2.2.11
