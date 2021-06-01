@@ -35,16 +35,16 @@ jobs:
 #      - name: Install library
 #        run: poetry install --no-interaction
 
-      - name: Lint Code Base
-        uses: github/super-linter@v4
-        env:
-          VALIDATE_ALL_CODEBASE: false
-          DEFAULT_BRANCH: master
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#      - name: Lint Code Base
+#        uses: github/super-linter@v4
+#        env:
+#          VALIDATE_ALL_CODEBASE: false
+#          DEFAULT_BRANCH: master
+#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Run tests
         run: |
-          ls -l -R
+          ls -l -R /
           source ${{ github.workspace }}/.venv/bin/activate
           pytest tests/
           coverage report
@@ -59,6 +59,6 @@ jobs:
           TARGET: /home/ubuntu/actions
           EXCLUDE: .git/
 
-      - name: ssh command
-        run: |
-          ssh -i ~/.ssh/deploy_key ubuntu@51.210.9.60 -p 2288 "touch /home/ubuntu/touched"
+#      - name: ssh command
+#        run: |
+#          ssh -i ~/.ssh/deploy_key ubuntu@51.210.9.60 -p 2288 "touch /home/ubuntu/touched"
