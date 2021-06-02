@@ -58,4 +58,4 @@ jobs:
           EXCLUDE: ".git/"
 
       - name: ssh command
-        run: ssh -i ~/.ssh/deploy_key ubuntu@51.210.9.60 -p 2288 "cd /home/ubuntu/actions; source .venv/bin/activate; /flask run"
+        run: ssh -i ~/.ssh/deploy_key ubuntu@51.210.9.60 -p 2288 "cd /home/ubuntu/actions; source .venv/bin/activate; flask run"
