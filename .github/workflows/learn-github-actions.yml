@@ -57,6 +57,6 @@ jobs:
           TARGET: /home/ubuntu/actions
           EXCLUDE: .git/ .venv/
 
-#      - name: ssh command
-#        run: |
-#          ssh -i ~/.ssh/deploy_key ubuntu@51.210.9.60 -p 2288 "touch /home/ubuntu/touched"
+      - name: ssh command
+        run: |
+          ssh -i ~/.ssh/deploy_key ubuntu@51.210.9.60 -p 2288 "cd /home/ubuntu/actions; flask run"
