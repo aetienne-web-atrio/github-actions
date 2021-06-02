@@ -8,6 +8,7 @@ authors = ["Adrien ETIENNE <adrien.etienne@web-atrio.com>"]
 python = "^3.8"
 pytest = "^6.2.4"
 Flask = "^2.0.1"
+gunicorn = "^20.1.0"
 
 [tool.poetry.dev-dependencies]
 
