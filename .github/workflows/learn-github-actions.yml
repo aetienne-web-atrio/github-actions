@@ -58,4 +58,4 @@ jobs:
           EXCLUDE: ".git/, .venv/"
 
       - name: ssh command
-        run: ssh -i ~/.ssh/deploy_key ubuntu@51.210.9.60 -p 2288 "source ~/.bashrc && cd /home/ubuntu/actions && poetry install && poetry run gunicorn -b 0.0.0.0:5000 app:app"
+        run: ssh -i ~/.ssh/deploy_key ubuntu@51.210.9.60 -p 2288 "/home/ubuntu/deploy.sh"
