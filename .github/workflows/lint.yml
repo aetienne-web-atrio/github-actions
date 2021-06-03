@@ -20,6 +20,32 @@ jobs:
           # Full git history is needed to get a proper list of changed files within `super-linter`
           fetch-depth: 0
 
+      ##################
+      # Install poetry #
+      ##################
+      - name: Install Poetry
+        uses: snok/install-poetry@v1.1.6
+        with:
+          virtualenvs-create: true
+          virtualenvs-in-project: true
+
+      ####################################
+      # Install dependencies and project #
+      ####################################
+      - name: Install dependencies
+        if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
+        run: poetry install --no-interaction --no-root
+
+      - name: Install library
+        run: poetry install --no-interaction
+
+      #############
+      # Run tests #
+      #############
+      - name: Run tests
+        run: |
+          source .venv/bin/activate
+          pytest tests/
 
       ################################
       # Run Linter against code base #
