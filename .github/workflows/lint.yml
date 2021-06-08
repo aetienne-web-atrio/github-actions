@@ -1,4 +1,4 @@
-name: lint-code-base
+name: lint-and-test-code-base
 on:
   push:
     branches-ignore: [master]
