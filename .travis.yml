@@ -5,8 +5,8 @@ python:
 # command to install dependencies
 install:
   - pip install poetry
-  - poetry add pylint
   - poetry install
+  - poetry add pylint
 # command to run tests
 script:
 #  - poetry run pytest
