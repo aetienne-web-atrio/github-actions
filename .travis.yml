@@ -7,10 +7,14 @@ install:
   - pip install poetry
   - poetry install
   - poetry add pylint
+  - poetry add flake8
+  - poetry add black
+  - poetry add isort
 # command to run tests
 script:
   - ls -l
   - poetry run pylint ./app.py
-#  - poetry run pytest
-#  - git diff --name-only HEAD~1 | grep -i .*\.py | xargs poetry run pylint
+  - git diff --name-only HEAD~1 | grep -i .*\.py | xargs poetry run pylint
+  - git diff --name-only HEAD~1 | grep -i .*\.py | xargs poetry run flake8
+  - git diff --name-only HEAD~1 | grep -i .*\.py | xargs poetry run black --check
 
