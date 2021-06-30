@@ -9,6 +9,8 @@ install:
   - poetry add pylint
 # command to run tests
 script:
+  - ls -l
+  - poetry run pylint ./app.py
 #  - poetry run pytest
-  - git diff --name-only HEAD~1 | grep -i .*\.py | xargs poetry run pylint
+#  - git diff --name-only HEAD~1 | grep -i .*\.py | xargs poetry run pylint
 
