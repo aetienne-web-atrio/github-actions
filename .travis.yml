@@ -5,8 +5,10 @@ python:
 # command to install dependencies
 install:
   - pip install poetry
+  - poetry add pylint
   - poetry install
 # command to run tests
 script:
-  - pytest
+#  - poetry run pytest
+  - git diff --name-only HEAD~1 | grep -i .*\.py | xargs poetry run pylint
 
