@@ -5,10 +5,11 @@ description = ""
 authors = ["Adrien ETIENNE <adrien.etienne@web-atrio.com>"]
 
 [tool.poetry.dependencies]
-python = "^3.8"
+python = "^3.7"
 pytest = "^6.2.4"
 Flask = "^2.0.1"
 gunicorn = "^20.1.0"
+pylint = "^2.9.1"
 
 [tool.poetry.dev-dependencies]
 
