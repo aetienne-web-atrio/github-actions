@@ -10,6 +10,7 @@ install:
 # command to run tests
 script:
   - ls -l
+  - poetry run pytest .
   - export modifiedFiles=$(git diff --name-only HEAD~1 | grep -i ^.*\.py$)
   - poetry run pylint $modifiedFiles
   - poetry run flake8 $modifiedFiles
