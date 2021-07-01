@@ -24,7 +24,7 @@ jobs:
       script:
         - export modifiedFiles=$(git diff --name-only HEAD~1 | grep -i ^.*\.py$)
         - echo $modifiedFiles
-        - poetry run pylint $modifiedFiles
+        - "[$modifiedFiles] && poetry run pylint $modifiedFiles || :"
         - poetry run flake8 $modifiedFiles
         - poetry run black --check $modifiedFiles
         - poetry run isort --check $modifiedFiles
