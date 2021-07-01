@@ -2,18 +2,20 @@ language: python
 python:
   - "3.7"
 
-# command to install dependencies
+branches:
+  only:
+    - master
+
 install:
   - pip install poetry
   - poetry install
   - poetry add pylint isort flake8 black
-# command to run tests
+
 script:
-  - ls -l
   - poetry run pytest .
   - export modifiedFiles=$(git diff --name-only HEAD~1 | grep -i ^.*\.py$)
-  - poetry run pylint $modifiedFiles
-  - poetry run flake8 $modifiedFiles
-  - poetry run black --check $modifiedFiles
-  - poetry run isort --check $modifiedFiles
-
+  - echo $modifiedFiles
+  - if [ $modifiedFiles ]; then poetry run pylint $modifiedFiles; fi;
+  - if [ $modifiedFiles ]; then poetry run flake8 $modifiedFiles; fi;
+  - if [ $modifiedFiles ]; then poetry run black --check $modifiedFiles; fi;
+  - if [ $modifiedFiles ]; then poetry run isort --check $modifiedFiles; fi;
