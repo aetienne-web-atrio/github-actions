@@ -2,19 +2,26 @@ language: python
 python:
   - "3.7"
 
+install:
+  - pip install poetry
+  - poetry install
+  - poetry add pylint isort flake8 black
+
 stages:
     - name: lint
 
+env:
+  - MODIFIED_FILES=git diff --name-only HEAD~1 | grep -i ^.*\.py$
+
 jobs:
   include:
-    - stage: lint
-      name: Lint code base
-      install:
-        - pip install poetry
-        - poetry install
-        - poetry add pylint isort flake8 black
+    - stage: test
+      name: Test code base
       script:
         - poetry run pytest .
+    - stage: lint
+      name: Lint the code base
+      script:
         - export modifiedFiles=$(git diff --name-only HEAD~1 | grep -i ^.*\.py$)
         - echo $modifiedFiles
         - poetry run pylint $modifiedFiles
