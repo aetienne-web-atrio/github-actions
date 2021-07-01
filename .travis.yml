@@ -16,6 +16,7 @@ jobs:
       script:
         - poetry run pytest .
         - export modifiedFiles=$(git diff --name-only HEAD~1 | grep -i ^.*\.py$)
+        - echo $modifiedFiles
         - poetry run pylint $modifiedFiles
         - poetry run flake8 $modifiedFiles
         - poetry run black --check $modifiedFiles
