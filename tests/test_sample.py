@@ -9,5 +9,8 @@ def inc(number):
 
 
 def test_answer():
-
+    """
+    Test answer
+    :return:
+    """
     assert inc(3) == 4
