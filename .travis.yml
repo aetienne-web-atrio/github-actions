@@ -2,18 +2,21 @@ language: python
 python:
   - "3.7"
 
-# command to install dependencies
-install:
-  - pip install poetry
-  - poetry install
-  - poetry add pylint isort flake8 black
-# command to run tests
-script:
-  - ls -l
-  - poetry run pytest .
-  - export modifiedFiles=$(git diff --name-only HEAD~1 | grep -i ^.*\.py$)
-  - poetry run pylint $modifiedFiles
-  - poetry run flake8 $modifiedFiles
-  - poetry run black --check $modifiedFiles
-  - poetry run isort --check $modifiedFiles
+stages:
+    - name: lint
 
+jobs:
+  include:
+    - stage: lint
+      name: Lint code base
+      install:
+        - pip install poetry
+        - poetry install
+        - poetry add pylint isort flake8 black
+      script:
+        - poetry run pytest .
+        - export modifiedFiles=$(git diff --name-only HEAD~1 | grep -i ^.*\.py$)
+        - poetry run pylint $modifiedFiles
+        - poetry run flake8 $modifiedFiles
+        - poetry run black --check $modifiedFiles
+        - poetry run isort --check $modifiedFiles
