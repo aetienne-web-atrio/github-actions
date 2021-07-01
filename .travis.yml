@@ -6,7 +6,14 @@ python:
 install:
   - pip install poetry
   - poetry install
+  - poetry add pylint isort flake8 black
 # command to run tests
 script:
-  - pytest
+  - ls -l
+  - poetry run pytest .
+  - export modifiedFiles=$(git diff --name-only HEAD~1 | grep -i ^.*\.py$)
+  - poetry run pylint $modifiedFiles
+  - poetry run flake8 $modifiedFiles
+  - poetry run black --check $modifiedFiles
+  - poetry run isort --check $modifiedFiles
 
