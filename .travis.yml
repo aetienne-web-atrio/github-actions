@@ -24,7 +24,7 @@ jobs:
       script:
         - export modifiedFiles=$(git diff --name-only HEAD~1 | grep -i ^.*\.py$)
         - echo $modifiedFiles
-        - if [$modifiedFiles]; then poetry run pylint $modifiedFiles; fi;
-        - if [$modifiedFiles]; then poetry run flake8 $modifiedFiles; fi;
-        - if [$modifiedFiles]; then poetry run black --check $modifiedFiles; fi;
-        - if [$modifiedFiles]; then poetry run isort --check $modifiedFiles; fi;
+        - if [ $modifiedFiles ]; then poetry run pylint $modifiedFiles; fi;
+        - if [ $modifiedFiles ]; then poetry run flake8 $modifiedFiles; fi;
+        - if [ $modifiedFiles ]; then poetry run black --check $modifiedFiles; fi;
+        - if [ $modifiedFiles ]; then poetry run isort --check $modifiedFiles; fi;
