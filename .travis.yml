@@ -2,29 +2,20 @@ language: python
 python:
   - "3.7"
 
+branches:
+  only:
+    - master
+
 install:
   - pip install poetry
   - poetry install
   - poetry add pylint isort flake8 black
 
-stages:
-    - name: lint
-
-env:
-  - MODIFIED_FILES=$(git diff --name-only HEAD~1 | grep -i ^.*\.py$)
-
-jobs:
-  include:
-    - stage: test
-      name: Test code base
-      script:
-        - poetry run pytest .
-    - stage: lint
-      name: Lint the code base
-      script:
-        - export modifiedFiles=$(git diff --name-only HEAD~1 | grep -i ^.*\.py$)
-        - echo $modifiedFiles
-        - if [ $modifiedFiles ]; then poetry run pylint $modifiedFiles; fi;
-        - if [ $modifiedFiles ]; then poetry run flake8 $modifiedFiles; fi;
-        - if [ $modifiedFiles ]; then poetry run black --check $modifiedFiles; fi;
-        - if [ $modifiedFiles ]; then poetry run isort --check $modifiedFiles; fi;
+script:
+  - poetry run pytest .
+  - export modifiedFiles=$(git diff --name-only HEAD~1 | grep -i ^.*\.py$)
+  - echo $modifiedFiles
+  - if [ $modifiedFiles ]; then poetry run pylint $modifiedFiles; fi;
+  - if [ $modifiedFiles ]; then poetry run flake8 $modifiedFiles; fi;
+  - if [ $modifiedFiles ]; then poetry run black --check $modifiedFiles; fi;
+  - if [ $modifiedFiles ]; then poetry run isort --check $modifiedFiles; fi;
